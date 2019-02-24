@@ -1,0 +1,35 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.1.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: dcdde276431e23d3794187b2ae8467eb921458ebe9e9de75cc9bad4677f87cea
+
+name:           queen-attack
+version:        2.2.0.7
+build-type:     Simple
+
+library
+  exposed-modules:
+      Queens
+  other-modules:
+      Paths_queen_attack
+  hs-source-dirs:
+      src
+  build-depends:
+      base
+  default-language: Haskell2010
+
+test-suite test
+  type: exitcode-stdio-1.0
+  main-is: Tests.hs
+  other-modules:
+      Paths_queen_attack
+  hs-source-dirs:
+      test
+  build-depends:
+      base
+    , hspec
+    , queen-attack
+  default-language: Haskell2010
