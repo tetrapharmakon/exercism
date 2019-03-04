@@ -1,18 +1,24 @@
 module SecretHandshake (handshake) where
 
 binDigits :: Int -> [Int]
-binDigits n = [mod n 2^i | i <- takeWhile (\x -> 2^x <= n) [0..]]
+binDigits 0 = []
+binDigits x =  binDigits (x `div` 2) ++ [x `mod` 2]
 
 g :: (Int,Int) -> String
-g (0,_) = undefined
-g (1,n) 
-  | n == 0 = "wink"
-  | n == 1 = "double blink"
-  | n == 2 = "close your eyes"
-  | n == 3 = "jump"
-  | otherwise = undefined
-g(_,_) = undefined
+g (0, _) = undefined
+g (1, 0) = "wink"
+g (1, 1) = "double blink"
+g (1, 2) = "close your eyes"
+g (1, 3) = "jump"
+g (1, 4) = "R"
+g (_, _) = undefined
 
 handshake :: Int -> [String]
-handshake n = map g $ filter (\x -> fst x /= 0) $ zip (reverse s) [0..]
-  where s = binDigits n
+handshake n 
+  | n == 0 = []
+  | "R" == last mapGFs = reverse (init mapGFs)
+  | otherwise = map g fs
+    where 
+      s  = binDigits n
+      fs = filter (\x -> fst x /= 0) $ zip (reverse s) [0..]
+      mapGFs = map g fs
