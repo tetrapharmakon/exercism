@@ -8,8 +8,8 @@ library:
   exposed-modules: Bob
   source-dirs: src
   ghc-options: -Wall
-  # dependencies:
-  # - foo       # List here the packages you
+  dependencies:
+  - text       # List here the packages you
   # - bar       # want to use in your solution.
 
 tests:
