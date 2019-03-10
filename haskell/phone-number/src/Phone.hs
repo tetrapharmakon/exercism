@@ -2,13 +2,26 @@ module Phone (number) where
 
 import Data.Char
 
+allDigits :: Maybe String -> Bool
+allDigits (Just xs) = all isDigit xs
+allDigits Nothing = False
+
+isNANP :: Maybe String -> Bool
+isNANP (Just xs) = head xs `elem` ['2'..'9'] && (xs !! 3) `elem` ['2'..'9']
+isNANP Nothing = False 
+
 isValid :: String -> Bool
-isValid xs = undefined
+isValid xs = allDigits (number xs) && isNANP (number xs)
 
 stripped :: String -> String
-stripped xs = tail $ filter (isDigit) xs
+stripped xs 
+  | head xs == '1' = xs
+  | otherwise = filter (`notElem` "()-+. ") xs
 
 number :: String -> Maybe String
 number xs 
-  | isValid xs = Just (stripped xs)
-  | otherwise  = Nothing
+  | length (stripped xs) /= 10 = Nothing
+  | take 3 xs == "+1 " = Just (stripped $ drop 3 xs)
+  | take 2 xs == "1 " = Just (stripped $ drop 2 xs)
+  | head xs == '1' = Just (tail $ stripped xs)
+  | otherwise = Just (stripped xs)
