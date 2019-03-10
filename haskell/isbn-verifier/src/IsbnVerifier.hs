@@ -4,14 +4,14 @@ import Text.ParserCombinators.Parsec
 import Data.Char
 import Data.Either
 
-slot = sepBy cell (char '-')
 cell = many (digit <|> char 'X')
-
-allDigits :: String -> Bool
-allDigits = all isDigit
+slot = sepBy cell (char '-')
 
 parseISBN :: String -> Either ParseError [String]
 parseISBN = parse slot "error"
+
+allDigits :: String -> Bool
+allDigits = all isDigit
 
 safeConcat :: Either ParseError [String] -> String
 safeConcat (Right xs) = concat xs
@@ -38,7 +38,5 @@ f x
 isbn :: String -> Bool
 isbn input 
   | '-' `elem` input = validate $ parseISBN input
-  | otherwise = and [ length input == 10
-                    , allDigits input
-                    , test winput ]
+  | otherwise = length input == 10 && allDigits input && test winput
   where winput = map f input
