@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 312404ba120b2db6a3bc38548d2794f5f27f4b915c9af36a67a95aec08cbdf9c
+-- hash: d7d6d189cdd41a520a31cedfba37c35c1bf0db92754d71cadadb4e28ea62443b
 
 name:           word-count
 version:        1.2.0.6
@@ -20,6 +20,7 @@ library
   ghc-options: -Wall
   build-depends:
       base
+    , split
   default-language: Haskell2010
 
 test-suite test
