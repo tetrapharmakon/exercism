@@ -1,26 +1,29 @@
-module Bob (responseFor) where
+module Bob where
+
+{-# LANGUAGE OverloadedStrings #-}
 
 import Data.Char
+import qualified Data.Text as T
 
-isQuestion :: String -> Bool
-isQuestion s = last s == '?'
+isQuestion :: T.Text -> Bool
+isQuestion s = T.last s == '?'
 
-isYelled :: String -> Bool
+isYelled :: T.Text -> Bool
 isYelled s 
-  | fs == ""  = False
-  | otherwise = all isUpper fs
+  | T.null fs  = False
+  | otherwise = T.all isUpper fs
   where
-    fs = filter isAlpha s
+    fs = T.filter isAlpha s
 
-isYQuest :: String -> Bool
+isYQuest :: T.Text -> Bool
 isYQuest s = isQuestion s && isYelled s
 
-responseFor :: String -> String
+responseFor :: T.Text -> T.Text
 responseFor xs 
-  | rxs == ""      = "Fine. Be that way!"
-  | isYQuest rxs   = "Calm down, I know what I'm doing!"
-  | isQuestion rxs = "Sure."
-  | isYelled rxs   = "Whoa, chill out!"
-  | otherwise      = "Whatever."
+  | T.null rxs     = T.pack "Fine. Be that way!"
+  | isYQuest rxs   = T.pack "Calm down, I know what I'm doing!"
+  | isQuestion rxs = T.pack "Sure."
+  | isYelled rxs   = T.pack "Whoa, chill out!"
+  | otherwise      = T.pack "Whatever."
   where
-    rxs = filter (not . isSpace) xs
+    rxs = T.filter (not . isSpace) xs
