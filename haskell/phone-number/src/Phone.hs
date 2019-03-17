@@ -11,7 +11,7 @@ isNANP (Just xs) = head xs `elem` ['2'..'9'] && (xs !! 3) `elem` ['2'..'9']
 isNANP Nothing = False 
 
 isValid :: String -> Bool
-isValid xs = allDigits (number xs) && isNANP (number xs)
+isValid xs = allDigits (Just (stripped xs)) && isNANP (Just (stripped xs))
 
 stripped :: String -> String
 stripped xs 
@@ -24,4 +24,5 @@ number xs
   | take 3 xs == "+1 " = Just (stripped $ drop 3 xs)
   | take 2 xs == "1 " = Just (stripped $ drop 2 xs)
   | head xs == '1' = Just (tail $ stripped xs)
-  | otherwise = Just (stripped xs)
+  | isValid xs = Just (stripped xs)
+  | otherwise = Nothing

@@ -4,34 +4,33 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e74a547e62d90b7f4a8582f05345f1edb000f379eb4c8b77bc96acd85cd58c11
+-- hash: fb976802d7f792a830688edeefc05768e9053ab8a505796a49c610a47447a6bf
 
-name:           saddle-points
-version:        1.3.0.7
+name:           doi-parser
+version:        1.6.1.8
 build-type:     Simple
 
 library
   exposed-modules:
-      Matrix
+      Doi
   other-modules:
-      Paths_saddle_points
+      Paths_doi_parser
   hs-source-dirs:
       src
   build-depends:
-      array
-    , base
+      base
+    , parsec
   default-language: Haskell2010
 
 test-suite test
   type: exitcode-stdio-1.0
   main-is: Tests.hs
   other-modules:
-      Paths_saddle_points
+      Paths_doi_parser
   hs-source-dirs:
       test
   build-depends:
-      array
-    , base
+      base
+    , doi-parser
     , hspec
-    , saddle-points
   default-language: Haskell2010

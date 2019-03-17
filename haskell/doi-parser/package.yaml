@@ -1,0 +1,19 @@
+name: doi-parser
+version: 1.6.1.8
+
+dependencies:
+  - base
+
+library:
+  exposed-modules: Doi
+  source-dirs: src
+  dependencies:
+    - parsec
+
+tests:
+  test:
+    main: Tests.hs
+    source-dirs: test
+    dependencies:
+      - doi-parser
+      - hspec
