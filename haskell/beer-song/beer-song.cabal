@@ -1,0 +1,35 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.1.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 58093cae7dc94ca1df2dabee7915639a35624df894134ac4dc18b087d1331c95
+
+name:           beer-song
+version:        0.1.0.3
+build-type:     Simple
+
+library
+  exposed-modules:
+      Beer
+  other-modules:
+      Paths_beer_song
+  hs-source-dirs:
+      src
+  build-depends:
+      base
+  default-language: Haskell2010
+
+test-suite test
+  type: exitcode-stdio-1.0
+  main-is: Tests.hs
+  other-modules:
+      Paths_beer_song
+  hs-source-dirs:
+      test
+  build-depends:
+      base
+    , beer-song
+    , hspec
+  default-language: Haskell2010
