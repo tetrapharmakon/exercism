@@ -1,6 +1,6 @@
-module Bob where
-
 {-# LANGUAGE OverloadedStrings #-}
+
+module Bob where
 
 import Data.Char
 import qualified Data.Text as T
@@ -20,10 +20,10 @@ isYQuest s = isQuestion s && isYelled s
 
 responseFor :: T.Text -> T.Text
 responseFor xs 
-  | T.null rxs     = T.pack "Fine. Be that way!"
-  | isYQuest rxs   = T.pack "Calm down, I know what I'm doing!"
-  | isQuestion rxs = T.pack "Sure."
-  | isYelled rxs   = T.pack "Whoa, chill out!"
-  | otherwise      = T.pack "Whatever."
+  | T.null rxs     = "Fine. Be that way!"
+  | isYQuest rxs   = "Calm down, I know what I'm doing!"
+  | isQuestion rxs = "Sure."
+  | isYelled rxs   = "Whoa, chill out!"
+  | otherwise      = "Whatever."
   where
     rxs = T.filter (not . isSpace) xs
