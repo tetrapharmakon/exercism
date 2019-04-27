@@ -1,0 +1,35 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.1.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 113789d6dee48658bb971e86f29debe4c5463cc89990fb0b70b6c4663a0dd5a9
+
+name:           triangle
+version:        0.1.0.3
+build-type:     Simple
+
+library
+  exposed-modules:
+      Triangle
+  other-modules:
+      Paths_triangle
+  hs-source-dirs:
+      src
+  build-depends:
+      base
+  default-language: Haskell2010
+
+test-suite test
+  type: exitcode-stdio-1.0
+  main-is: Tests.hs
+  other-modules:
+      Paths_triangle
+  hs-source-dirs:
+      test
+  build-depends:
+      base
+    , hspec
+    , triangle
+  default-language: Haskell2010
