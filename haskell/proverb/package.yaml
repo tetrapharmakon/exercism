@@ -7,7 +7,7 @@ dependencies:
 library:
   exposed-modules: Proverb
   source-dirs: src
-  ghc-options: -Wall
+  # ghc-options: -Wall
 
 tests:
   test:
