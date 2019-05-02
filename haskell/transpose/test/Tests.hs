@@ -1,20 +1,20 @@
 {-# LANGUAGE RecordWildCards #-}
 
-import Data.Foldable     (for_)
-import Test.Hspec        (Spec, describe, it, shouldBe)
-import Test.Hspec.Runner (configFastFail, defaultConfig, hspecWith)
+import           Data.Foldable     (for_)
+import           Test.Hspec        (Spec, describe, it, shouldBe)
+import           Test.Hspec.Runner (configFastFail, defaultConfig, hspecWith)
 
-import Transpose (transpose)
+import           Transpose         (tRanspose)
 
 main :: IO ()
 main = hspecWith defaultConfig {configFastFail = True} specs
 
 specs :: Spec
-specs = describe "transpose" $ for_ cases test
+specs = describe "tRanspose" $ for_ cases test
   where
     test Case{..} = it description assertion
       where
-        assertion = transpose rows `shouldBe` expected
+        assertion = tRanspose rows `shouldBe` expected
 
 data Case = Case { description :: String
                  , rows        :: [String]

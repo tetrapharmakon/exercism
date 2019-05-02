@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 22581515bbc8719576a34d642a7b0503f565c3739b821c5fa3a2d09f21990c47
+-- hash: 14bbbbbeb8ed60bc6f95e7340f45176a31551d21e893608f215804c84f90f562
 
 name:           transpose
 version:        1.1.0.2
@@ -17,7 +17,6 @@ library
       Paths_transpose
   hs-source-dirs:
       src
-  ghc-options: -Wall
   build-depends:
       base
   default-language: Haskell2010
