@@ -1,29 +1,14 @@
 {-# LANGUAGE DeriveAnyClass #-}
 
-import Control.Exception (Exception, throw, evaluate)
-import Test.Hspec        (Spec, describe, it, shouldBe, shouldThrow)
-import Test.Hspec.Runner (configFastFail, defaultConfig, hspecWith)
+import           Control.Exception (Exception, evaluate, throw)
+import           Test.Hspec        (Spec, describe, it, shouldBe, shouldThrow)
+import           Test.Hspec.Runner (configFastFail, defaultConfig, hspecWith)
 
-import Prelude hiding
-    ( (++)
-    , concat
-    , filter
-    , foldr
-    , length
-    , map
-    , reverse
-    )
+import           Prelude           hiding (concat, filter, foldr, length, map,
+                                    reverse, (++))
 
-import ListOps
-    ( (++)
-    , concat
-    , filter
-    , foldl'
-    , foldr
-    , length
-    , map
-    , reverse
-    )
+import           ListOps           (concat, filter, foldl', foldr, length, map,
+                                    reverse, (++))
 
 data StrictException = StrictException deriving (Eq, Show, Exception)
 
