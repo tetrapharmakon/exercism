@@ -1,18 +1,9 @@
-import Data.Char          (toUpper)
-import Data.Time.Calendar (fromGregorian)
-import Test.Hspec         (Spec, it, shouldBe)
-import Test.Hspec.Runner  (configFastFail, defaultConfig, hspecWith)
+import           Data.Char          (toUpper)
+import           Data.Time.Calendar (fromGregorian)
+import           Test.Hspec         (Spec, it, shouldBe)
+import           Test.Hspec.Runner  (configFastFail, defaultConfig, hspecWith)
 
-import Person
-  ( Address (..)
-  , Born    (..)
-  , Name    (..)
-  , Person  (..)
-  , bornStreet
-  , renameStreets
-  , setBirthMonth
-  , setCurrentStreet
-  )
+import           Person
 
 main :: IO ()
 main = hspecWith defaultConfig {configFastFail = True} specs

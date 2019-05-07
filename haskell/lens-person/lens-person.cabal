@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 0781f925dbe7a0acbd47989b77a4594b59db373483a93584ec530f58ddab080d
+-- hash: 120d41300450dc8ec0a2d69a1a6b8651eced1c2d2a1da311ce1f3a80952d0ef6
 
 name:           lens-person
 version:        0.1.0.3
@@ -33,6 +33,7 @@ test-suite test
   build-depends:
       base
     , hspec
+    , lens
     , lens-person
     , time
   default-language: Haskell2010
