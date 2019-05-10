@@ -12,4 +12,4 @@ padMatrix ss = map (padSomeSpace n) (init ss) ++ [last ss]
     n = maximum (map length ss)
 
 tRanspose :: [String] -> [String]
-tRanspose ls = transpose $ padMatrix ls
+tRanspose ls = transpose ls
