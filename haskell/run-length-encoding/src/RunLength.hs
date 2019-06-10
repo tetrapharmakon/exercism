@@ -1,33 +1,59 @@
 module RunLength where
 
-import Data.List
 import Data.Char
-import Data.List.Split
+import Data.List
 
-rleCompress :: Eq a => [a] -> [(a, Int)]
-rleCompress t = zip (map head tt) (map length tt) 
-  where tt = group t
-
-rleReduce :: (Eq a, Ord a) => [(a, Int)] -> [(a, Int)]
-rleReduce [] = []
-rleReduce a = filter appears $ map red $ groupBy alike $ sortOn fst a
+rleCompress :: Eq a => [a] -> [(Int, a)]
+rleCompress t = zip (map length tt) (map head tt)
   where
-    appears x = snd x /= 0
-    alike x y = fst x == fst y
-    red w = (fst $ head w, sum $ map snd w)
+    tt = group t
 
-g :: String -> [String]
-g [] = []
-g (x:y) = undefined
+lettersAndSpace :: String
+lettersAndSpace = ' ' : ['A' .. 'Z'] ++ ['a' .. 'z']
 
-append :: a -> [a] -> [a]
-append a [] = [a]
-append a [x] = [x,a]
-append a (x:xs) = x : append a xs
+allLetters :: String -> Bool
+allLetters = all (`elem` lettersAndSpace)
 
--- decode :: String -> String
-decode encodedText = concatMap g $ chunksOf 2 encodedText
+intersperseDigits :: String -> String
+intersperseDigits encodedText =
+  if isAlpha (head encodedText)
+    then f ('1' : encodedText)
+    else f encodedText
+  where
+    f = concatMap fu . splitOnDigit
+    fu [] = []
+    fu [x] = [x]
+    fu xs =
+      if allLetters xs
+        then intersperse '1' xs
+        else xs
+
+decode :: String -> String
+decode [] = []
+decode text =
+  concatMap (g . f) $
+  uncurry zip $ evenOddSplit $ splitOnDigit $ intersperseDigits text
+  where
+    f (a, b) = (read a :: Integer, head b)
+    g (n, y) = map (const y) [1 .. n]
 
 encode :: String -> String
-encode text = filter (/='1') $ concatMap f $ rleReduce $ rleCompress text
-  where f (x,n) = append x (show n)
+encode = concat . filter (/= "1") . splitOnDigit . concatMap f . rleCompress
+  where
+    f (n, x) = show n ++ [x]
+
+groupOn :: Eq b => (a -> b) -> [a] -> [(b, [a])]
+groupOn _ [] = []
+groupOn proj (x:xs) = (x', x : ys) : groupOn proj zs
+  where
+    x' = proj x
+    (ys, zs) = span ((== x') . proj) xs
+
+evenOddSplit :: [a] -> ([a], [a])
+evenOddSplit [] = ([], [])
+evenOddSplit (x:xs) = (x : o, e)
+  where
+    (e, o) = evenOddSplit xs
+
+splitOnDigit :: String -> [String]
+splitOnDigit = map snd . groupOn (`notElem` lettersAndSpace)

@@ -1,0 +1,21 @@
+name: scrabble-score
+version: 1.1.0.5
+
+dependencies:
+    - base
+    - containers
+
+library:
+    exposed-modules: Scrabble
+    source-dirs: src
+    # dependencies:
+    # - map # List here the packages you
+    # - bar       # want to use in your solution.
+
+tests:
+    test:
+        main: Tests.hs
+        source-dirs: test
+        dependencies:
+            - scrabble-score
+            - hspec
