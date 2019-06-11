@@ -1,0 +1,36 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.1.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 78c73db5fb08225c4039669b39f7d658c918eda209cb1045aa3b852e52b53a5e
+
+name:           series
+version:        1.0.0.4
+build-type:     Simple
+
+library
+  exposed-modules:
+      Series
+  other-modules:
+      Paths_series
+  hs-source-dirs:
+      src
+  build-depends:
+      base
+    , vector
+  default-language: Haskell2010
+
+test-suite test
+  type: exitcode-stdio-1.0
+  main-is: Tests.hs
+  other-modules:
+      Paths_series
+  hs-source-dirs:
+      test
+  build-depends:
+      base
+    , hspec
+    , series
+  default-language: Haskell2010

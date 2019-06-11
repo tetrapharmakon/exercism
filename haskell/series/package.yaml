@@ -1,0 +1,20 @@
+name: series
+version: 1.0.0.4
+
+dependencies:
+    - base
+
+library:
+    exposed-modules: Series
+    source-dirs: src
+    dependencies:
+        - vector # List here the packages you
+    # - bar       # want to use in your solution.
+
+tests:
+    test:
+        main: Tests.hs
+        source-dirs: test
+        dependencies:
+            - series
+            - hspec
