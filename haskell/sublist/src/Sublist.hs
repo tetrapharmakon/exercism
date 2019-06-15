@@ -1,4 +1,12 @@
-module Sublist (sublist) where
+module Sublist
+  ( sublist
+  ) where
 
-sublist :: [a] -> [a] -> Maybe Ordering
-sublist xs ys = error "You need to implement this function."
+import Data.List
+
+sublist :: Eq a => [a] -> [a] -> Maybe Ordering
+sublist xs ys
+  | xs == ys = Just EQ
+  | xs `isInfixOf` ys = Just LT
+  | ys `isInfixOf` xs = Just GT
+  | otherwise = Nothing
