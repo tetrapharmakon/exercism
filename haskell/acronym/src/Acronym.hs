@@ -1,15 +1,17 @@
-module Acronym (abbreviate) where
+module Acronym where
 
+import Control.Monad
 import Data.Char
 
 capitalize :: String -> String
-capitalize "" = ""
-capitalize (x:xs) = toUpper x : xs
+capitalize = ap ((:) . toUpper . head) tail
 
-thisForThat :: Char -> Char
-thisForThat x 
-  | x == '-' = ' ' 
-  | otherwise = x
+thisForThat :: String -> String
+thisForThat = map q
+  where
+    q x
+      | x == '-' = ' '
+      | otherwise = x
 
 shout :: String -> String
 shout = map toUpper
@@ -18,7 +20,10 @@ uppers :: String -> String
 uppers = filter isUpper
 
 f :: String -> String
-f x = if x == shout x then [head x] else uppers x
+f x =
+  if x == shout x
+    then [head x]
+    else uppers x
 
 abbreviate :: String -> String
-abbreviate xs = concatMap (f . capitalize) $ words $ map thisForThat xs
+abbreviate = (f . capitalize =<<) . words . thisForThat
