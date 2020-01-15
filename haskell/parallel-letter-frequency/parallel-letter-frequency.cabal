@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.31.1.
+-- This file has been generated from package.yaml by hpack version 0.31.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 490dc1b99cc46003fdced59ef4b5731596e344b491a4cfbd85eea017087e0b5f
+-- hash: a63a51c651b1606778eb5e95752273586b7cc25d2854dcf7031bed8d213e1c1d
 
 name:           parallel-letter-frequency
 version:        0.1.0.4
@@ -17,7 +17,7 @@ library
       Paths_parallel_letter_frequency
   hs-source-dirs:
       src
-  ghc-options: -Wall
+  ghc-options: -eventlog -O2
   build-depends:
       base
     , containers
