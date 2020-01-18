@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: c754c3dda7a9f258d3bc949e0a4e4bfebd9cea080f248797235b6b51484e8856
+-- hash: 4d0aa6dbfd2852df8b754695669274d1764660c8efa5132a9a8812a8d2bdd3e0
 
 name:           allergies
 version:        1.2.0.7
@@ -20,6 +20,7 @@ library
   ghc-options: -Wall
   build-depends:
       base
+    , containers
   default-language: Haskell2010
 
 test-suite test
@@ -33,5 +34,6 @@ test-suite test
       QuickCheck
     , allergies
     , base
+    , containers
     , hspec
   default-language: Haskell2010

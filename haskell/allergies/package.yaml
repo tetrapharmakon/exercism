@@ -2,21 +2,22 @@ name: allergies
 version: 1.2.0.7
 
 dependencies:
-  - base
+    - base
+    - containers
 
 library:
-  exposed-modules: Allergies
-  source-dirs: src
-  ghc-options: -Wall
-  # dependencies:
-  # - foo       # List here the packages you
-  # - bar       # want to use in your solution.
+    exposed-modules: Allergies
+    source-dirs: src
+    ghc-options: -Wall
+    # dependencies:
+    #     - map # List here the packages you
+    # - bar       # want to use in your solution.
 
 tests:
-  test:
-    main: Tests.hs
-    source-dirs: test
-    dependencies:
-      - allergies
-      - hspec
-      - QuickCheck
+    test:
+        main: Tests.hs
+        source-dirs: test
+        dependencies:
+            - allergies
+            - hspec
+            - QuickCheck
